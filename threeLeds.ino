@@ -3,8 +3,9 @@ const int buttonPin = 2; // the number of the pushbutton pin
 
 // variables will change:
 int n = 0; // variable for reading the pushbutton status
-int pin13 = 13;
 int pin8 = 8;
+int pin12 = 12;
+int pin2 = 2;
 int pin4 = 4;
 int pin7 = 7;
 
@@ -15,30 +16,31 @@ void setup()
   Serial.print("\n\ndigite um dado");
   Serial.println();
 
-  pinMode(13, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(pin12, OUTPUT);
   pinMode(pin8, OUTPUT);
   pinMode(pin4, OUTPUT);
+  pinMode(pin2, OUTPUT);
+  pinMode(pin7, OUTPUT);
+
+
+  
 }
 
 void resetLED(){
   digitalWrite(LED_BUILTIN, LOW);
   digitalWrite(pin8, LOW);
   digitalWrite(pin4, LOW);
+  digitalWrite(pin2, LOW);
+  digitalWrite(pin12, LOW);
+  digitalWrite(pin7, LOW);
 }
 
 void loop()
 {
-  
-  
-  analogWrite(11,250);
-  
+    
   if (Serial.available() > 0)
   {
-    
-    //Serial.println("\n\n--pino ~11: ");
-  	
-
-  	//Serial.print("\n\n");
     
     n = Serial.read();
 
@@ -47,22 +49,46 @@ void loop()
     case 97:
       resetLED();
       digitalWrite(LED_BUILTIN, HIGH);
-      Serial.println("\n\n--Amarelo--\n");
+      Serial.println("\n\n--PRIMEIRO--\n");
       break;
 
     case 98:
       resetLED();
-      digitalWrite(pin8, HIGH);
-      Serial.println("\n\n--Branco--\n");
+      digitalWrite(pin12, HIGH);
+      Serial.println("\n\n--SEGUNDO--\n");
       break;
 
-    case 118:
+    case 99:
+      resetLED();
+      digitalWrite(pin8, HIGH);
+      Serial.println("\n\n--TERCEIRO--\n");
+      break;
+
+    case 100:
+      resetLED();
+      digitalWrite(pin7, HIGH);
+      Serial.println("\n\n--QUARTO--\n");
+      break;
+
+    case 101:
       resetLED();
       digitalWrite(pin4, HIGH);
-      Serial.println("\n\n--Vermelho--\n");
+      Serial.println("\n\n--QUINTO--\n");
       break;
-    }
-    
+
+    case 102:
+      resetLED();
+      digitalWrite(pin2, HIGH);
+      Serial.println("\n\n--SEXTO--\n");
+      break;
+
+     case 10:
+      break;
+     
+     default:
+      resetLED();
+     }
+
     Serial.print("\n\nValor digitado: ");
     Serial.println(n, BIN);
     Serial.print("Valor lido: ");
